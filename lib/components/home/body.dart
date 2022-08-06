@@ -8,12 +8,16 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     // It will provide us total height and width of our screen
     Size size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        BannerWithSearchForm(size: size),
-        const TitleWithMoreButton(),
-        RecommendedPlants(size: size),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: const [
+          BannerWithSearchForm(),
+          TitleWithMoreButton(),
+          RecommendedPlants(),
+          TitleWithMoreButton(),
+          FeaturedPlant(),
+        ],
+      ),
     );
   }
 }
@@ -21,13 +25,12 @@ class Body extends StatelessWidget {
 class BannerWithSearchForm extends StatelessWidget {
   const BannerWithSearchForm({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
       // It will cover 20% of the screen
       height: size.height * 0.25,
@@ -165,21 +168,25 @@ class TitleWithMoreButton extends StatelessWidget {
 class RecommendedPlants extends StatelessWidget {
   const RecommendedPlants({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: kDefaultPadding,
+    Size size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.only(
+        left: kDefaultPadding,
+        right: kDefaultPadding,
+        bottom: kDefaultPadding,
       ),
       child: Row(
         children: [
           Container(
             width: size.width * 0.4,
+            margin: const EdgeInsets.only(
+              right: 20,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -194,20 +201,26 @@ class RecommendedPlants extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Image(
-                  image: AssetImage(
-                    'assets/images/plant1.png',
+                const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
                   ),
-                  height: 150,
-                  fit: BoxFit.cover,
+                  child: Image(
+                    image: AssetImage(
+                      'assets/images/plant1.png',
+                    ),
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(kDefaultPadding / 1.5),
+                  padding: const EdgeInsets.all(kDefaultPadding / 2),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
                     ),
                   ),
                   child: Row(
@@ -216,26 +229,461 @@ class RecommendedPlants extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Ross Flower'.toUpperCase(),
-                            style: const TextStyle(
+                          const Text(
+                            'Ross Flower',
+                            style: TextStyle(
                               color: Colors.black,
-                              fontSize: 15,
+                              fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
+                          ),
+                          const SizedBox(
+                            height: 3,
                           ),
                           Text(
                             'Nigeria'.toUpperCase(),
                             style: const TextStyle(
                               color: Colors.grey,
-                              fontSize: 15,
+                              fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
                       ),
                       Text(
-                        '400'.toUpperCase(),
+                        '₦400'.toUpperCase(),
+                        style: const TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: size.width * 0.4,
+            margin: const EdgeInsets.only(
+              right: 20,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(0, 5),
+                  blurRadius: 10,
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/images/plant1.png',
+                    ),
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(kDefaultPadding / 2),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Ross Flower',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Nigeria'.toUpperCase(),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '₦400'.toUpperCase(),
+                        style: const TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: size.width * 0.4,
+            margin: const EdgeInsets.only(
+              right: 20,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(0, 5),
+                  blurRadius: 10,
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/images/plant1.png',
+                    ),
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(kDefaultPadding / 2),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Ross Flower',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Nigeria'.toUpperCase(),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '₦400'.toUpperCase(),
+                        style: const TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FeaturedPlant extends StatelessWidget {
+  const FeaturedPlant({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.only(
+        left: kDefaultPadding,
+        right: kDefaultPadding,
+        bottom: kDefaultPadding,
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: size.width * 0.7,
+            margin: const EdgeInsets.only(
+              right: 20,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(0, 5),
+                  blurRadius: 10,
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/images/plant1.png',
+                    ),
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(kDefaultPadding / 2),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Ross Flower',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Nigeria'.toUpperCase(),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '₦400'.toUpperCase(),
+                        style: const TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: size.width * 0.7,
+            margin: const EdgeInsets.only(
+              right: 20,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(0, 5),
+                  blurRadius: 10,
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/images/plant1.png',
+                    ),
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(kDefaultPadding / 2),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Ross Flower',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Nigeria'.toUpperCase(),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '₦400'.toUpperCase(),
+                        style: const TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: size.width * 0.7,
+            margin: const EdgeInsets.only(
+              right: 20,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(0, 5),
+                  blurRadius: 10,
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/images/plant1.png',
+                    ),
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(kDefaultPadding / 2),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Ross Flower',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Nigeria'.toUpperCase(),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '₦400'.toUpperCase(),
                         style: const TextStyle(
                           color: kPrimaryColor,
                           fontSize: 15,
