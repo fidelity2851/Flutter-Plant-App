@@ -198,11 +198,11 @@ class RecommendedPlants extends StatelessWidget {
                   image: AssetImage(
                     'assets/images/plant1.png',
                   ),
-                  height: 200,
+                  height: 150,
                   fit: BoxFit.cover,
                 ),
                 Container(
-                  padding: EdgeInsets.all(kDefaultPadding),
+                  padding: const EdgeInsets.all(kDefaultPadding / 1.5),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -210,13 +210,39 @@ class RecommendedPlants extends StatelessWidget {
                       bottomRight: Radius.circular(20),
                     ),
                   ),
-                  child: Text(
-                    'Plant'.toUpperCase(),
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Ross Flower'.toUpperCase(),
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            'Nigeria'.toUpperCase(),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '400'.toUpperCase(),
+                        style: const TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
                 )
               ],
