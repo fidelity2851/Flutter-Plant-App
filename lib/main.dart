@@ -15,13 +15,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Plant App',
+      home: const HomeScreen(),
       theme: ThemeData(
         scaffoldBackgroundColor: kBackgroundColor,
         primaryColor: Colors.amber,
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomeScreen(),
     );
   }
 }
