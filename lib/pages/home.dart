@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// import 'package:plant_app/utility/appbar.dart';
+import 'package:plant_app/utility/bottom_nav.dart';
 import 'package:plant_app/components/home/banner_with_search_form.dart';
 import 'package:plant_app/components/home/title_with_more_button.dart';
 import 'package:plant_app/components/home/recommended_plants.dart';
@@ -29,42 +31,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 60.0,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: kPrimaryColor.withOpacity(0.2),
-              offset: const Offset(0, 10),
-              blurRadius: 50,
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.home_filled),
-              color: kPrimaryColor,
-              iconSize: 30.0,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.chat_rounded),
-              color: kPrimaryColor,
-              iconSize: 30.0,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.settings),
-              color: kPrimaryColor,
-              iconSize: 30.0,
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: const BottomNav(),
     );
   }
 

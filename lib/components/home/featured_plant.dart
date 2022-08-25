@@ -17,10 +17,28 @@ class FeaturedPlant extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: const [
           FeaturedItem(
-            imagePath: 'assets/images/plant1.png',
+            imagePath: 'assets/images/plant5.png',
             name: 'Ross Flower',
             country: 'Ghana',
             price: 1400,
+          ),
+          FeaturedItem(
+            imagePath: 'assets/images/plant4.png',
+            name: 'Ross Flower',
+            country: 'Nigeria',
+            price: 4000,
+          ),
+          FeaturedItem(
+            imagePath: 'assets/images/plant3.png',
+            name: 'Ross Flower',
+            country: 'Nigeria',
+            price: 4000,
+          ),
+          FeaturedItem(
+            imagePath: 'assets/images/plant2.png',
+            name: 'Ross Flower',
+            country: 'Nigeria',
+            price: 4000,
           ),
           FeaturedItem(
             imagePath: 'assets/images/plant1.png',
@@ -81,6 +99,7 @@ class FeaturedItem extends StatelessWidget {
                 imagePath,
               ),
               height: 200,
+              width: double.infinity,
               fit: BoxFit.cover,
             ),
           ),
