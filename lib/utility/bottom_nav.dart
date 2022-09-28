@@ -33,16 +33,14 @@ class BottomNav extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/details');
+              Navigator.pushNamed(context, '/favorite');
             },
             icon: const Icon(Icons.favorite),
             color: Colors.grey,
             iconSize: 30.0,
           ),
           IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/profile');
-            },
+            onPressed: () {},
             icon: const Icon(Icons.person_rounded),
             color: Colors.grey,
             iconSize: 30.0,

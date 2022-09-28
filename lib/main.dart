@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants.dart';
+import 'package:plant_app/pages/favorite.dart';
 import 'package:plant_app/pages/home.dart';
 import 'package:plant_app/pages/details.dart';
 
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Plant App',
       // home: const HomeScreen(),
       theme: themeSetting(context),
-      initialRoute: '/details',
+      initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
         '/details': (context) => const DetailScreen(),
+        '/favorite': (context) => const FavoriteScreen(),
       },
     );
   }
